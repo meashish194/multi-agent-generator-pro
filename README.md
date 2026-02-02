@@ -1,6 +1,5 @@
 # multi-agent-generator-pro
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/51e698ee-005b-4827-a438-552269a1c178" />
 <img width="1024" height="683" alt="image" src="https://github.com/user-attachments/assets/41a4210b-0184-435b-bfce-e44ebe0d479b" />
 
 

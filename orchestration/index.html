@@ -1,0 +1,1975 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../tools/">
+      
+      
+        <link rel="next" href="../evaluation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Orchestration Patterns - Multi-Agent Generator</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multi-agent-orchestration-patterns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Multi-Agent Generator" class="md-header__button md-logo" aria-label="Multi-Agent Generator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Multi-Agent Generator
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Orchestration Patterns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meashish194/multi-agent-generator-pro.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meashish194/multi-agent-generator-pro
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../usage/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Usage
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../tools/" class="md-tabs__link">
+          
+  
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../frameworks/crewai/" class="md-tabs__link">
+          
+  
+  
+  Frameworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../llm-providers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LLM Providers
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Multi-Agent Generator" class="md-nav__button md-logo" aria-label="Multi-Agent Generator" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Multi-Agent Generator
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meashish194/multi-agent-generator-pro.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meashish194/multi-agent-generator-pro
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orchestration Patterns
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orchestration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Available Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-pattern-suggestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Pattern Suggestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-code-for-specific-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate Code for Specific Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-to-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save to File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-number-of-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Number of Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-framework-combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern + Framework Combinations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-complete-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Complete Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supervisor-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supervisor Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debate-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debate Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voting-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapreduce-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MapReduce Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patterntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PatternType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation & Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frameworks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frameworks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/crewai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CrewAI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/crewai-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CrewAI Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/langgraph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReAct (Classic)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/react-lcel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReAct (LCEL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks/agno/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agno
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Available Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-pattern-suggestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Pattern Suggestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-code-for-specific-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate Code for Specific Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-to-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save to File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-number-of-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customize Number of Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-framework-combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern + Framework Combinations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-complete-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Complete Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supervisor-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supervisor Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debate-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debate Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voting-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapreduce-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MapReduce Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patterntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PatternType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="multi-agent-orchestration-patterns">Multi-Agent Orchestration Patterns</h1>
+<p>The Orchestration module provides battle-tested patterns for coordinating multiple agents to work together effectively.</p>
+<h2 id="overview">Overview</h2>
+<p>Choose from 5 orchestration patterns based on your use case:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Best For</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Supervisor</strong></td>
+<td>Delegating tasks</td>
+<td>Central coordinator routes work to specialists</td>
+</tr>
+<tr>
+<td><strong>Debate</strong></td>
+<td>Reaching consensus</td>
+<td>Agents discuss and refine answers</td>
+</tr>
+<tr>
+<td><strong>Voting</strong></td>
+<td>Democratic decisions</td>
+<td>Agents vote on the best response</td>
+</tr>
+<tr>
+<td><strong>Pipeline</strong></td>
+<td>Sequential processing</td>
+<td>Chain of specialized processing steps</td>
+</tr>
+<tr>
+<td><strong>MapReduce</strong></td>
+<td>Parallel processing</td>
+<td>Split work, process in parallel, aggregate</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cli-usage">CLI Usage</h2>
+<h3 id="list-available-patterns">List Available Patterns</h3>
+<p>See all orchestration patterns with descriptions and use cases:</p>
+<pre><code class="language-bash">multi-agent-generator --list-patterns
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>🔄 Available Orchestration Patterns:
+
+  [SUPERVISOR PATTERN]
+    Description: A supervisor agent coordinates and delegates tasks to specialized worker agents
+    Use Cases:
+      • Project management workflows
+      • Quality assurance processes
+      • Customer service escalation
+
+  [DEBATE PATTERN]
+    Description: Multiple agents argue different perspectives and reach consensus through structured debate
+    Use Cases:
+      • Decision making processes
+      • Fact checking and verification
+      • Brainstorming sessions
+
+  [VOTING PATTERN]
+    Description: Multiple agents vote on decisions, with configurable voting rules
+    Use Cases:
+      • Ensemble AI decisions
+      • Content moderation
+      • Quality assessment
+
+  [PIPELINE PATTERN]
+    Description: Sequential processing chain where each agent transforms and passes data to the next
+    Use Cases:
+      • Content creation and editing
+      • Data transformation pipelines
+      • Multi-stage processing
+
+  [MAP-REDUCE PATTERN]
+    Description: Parallel processing where multiple agents work on chunks, then results are aggregated
+    Use Cases:
+      • Large document summarization
+      • Parallel data analysis
+      • Distributed processing
+</code></pre>
+<h3 id="get-pattern-suggestion">Get Pattern Suggestion</h3>
+<p>Describe your needs in natural language and get a recommended pattern:</p>
+<pre><code class="language-bash">multi-agent-generator --orchestrate &quot;I need a team where a manager assigns tasks to specialists&quot;
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>🔄 Analyzing task description...
+   &quot;I need a team where a manager assigns tasks to specialists&quot;
+
+📌 Recommended pattern: supervisor
+
+🏗️  Generating supervisor orchestration code for langgraph...
+
+# Generated code follows...
+</code></pre>
+<h3 id="generate-code-for-specific-pattern">Generate Code for Specific Pattern</h3>
+<pre><code class="language-bash"># Generate supervisor pattern
+multi-agent-generator --pattern supervisor --framework langgraph
+
+# Generate debate pattern with CrewAI
+multi-agent-generator --pattern debate --framework crewai
+
+# Generate voting pattern with 5 agents
+multi-agent-generator --pattern voting --num-agents 5
+</code></pre>
+<h3 id="save-to-file">Save to File</h3>
+<pre><code class="language-bash">multi-agent-generator --pattern supervisor --framework langgraph --output supervisor_system.py
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>🔄 Using orchestration pattern: supervisor
+
+🏗️  Generating supervisor orchestration code for langgraph...
+
+✅ Orchestration code saved to supervisor_system.py
+
+📋 Orchestration Summary:
+   Pattern: supervisor
+   Framework: langgraph
+   Agents: ['supervisor', 'worker_1', 'worker_2']
+</code></pre>
+<h3 id="customize-number-of-agents">Customize Number of Agents</h3>
+<pre><code class="language-bash"># Generate with 5 agents instead of default 3
+multi-agent-generator --pattern map_reduce --num-agents 5 --framework langgraph
+</code></pre>
+<h3 id="pattern-framework-combinations">Pattern + Framework Combinations</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>LangGraph</th>
+<th>CrewAI</th>
+<th>CrewAI-Flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>supervisor</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>debate</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>voting</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>pipeline</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>map_reduce</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-complete-workflow">Example: Complete Workflow</h3>
+<pre><code class="language-bash"># Step 1: See available patterns
+multi-agent-generator --list-patterns
+
+# Step 2: Get suggestion for your use case
+multi-agent-generator --orchestrate &quot;I need agents to review and improve a document collaboratively&quot;
+
+# Step 3: Generate the code
+multi-agent-generator --pattern pipeline --framework langgraph --num-agents 4 --output document_pipeline.py
+</code></pre>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+# Generate from natural language
+result = orchestrator.generate_from_description(
+    &quot;I need a research team where a manager delegates to specialists&quot;
+)
+print(result[&quot;code&quot;])
+</code></pre>
+<hr />
+<h2 id="patterns">Patterns</h2>
+<h3 id="supervisor-pattern">Supervisor Pattern</h3>
+<p>A central supervisor agent coordinates work among specialist agents.</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+config = orchestrator.create_pattern_config(
+    pattern_type=PatternType.SUPERVISOR,
+    agents=[&quot;researcher&quot;, &quot;writer&quot;, &quot;reviewer&quot;],
+    task_description=&quot;Create a comprehensive market analysis report&quot;
+)
+
+code = orchestrator.generate_code(config)
+</code></pre>
+<p><strong>Use Cases:</strong>
+- Task delegation and management
+- Quality control workflows
+- Hierarchical team structures</p>
+<p><strong>How It Works:</strong>
+1. Supervisor receives the task
+2. Supervisor analyzes and delegates to appropriate specialist
+3. Specialist completes subtask and reports back
+4. Supervisor aggregates results or assigns next task</p>
+<hr />
+<h3 id="debate-pattern">Debate Pattern</h3>
+<p>Multiple agents discuss and refine an answer through structured debate.</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+config = orchestrator.create_pattern_config(
+    pattern_type=PatternType.DEBATE,
+    agents=[&quot;optimist&quot;, &quot;pessimist&quot;, &quot;moderator&quot;],
+    task_description=&quot;Evaluate the risks and benefits of a new product launch&quot;,
+    max_rounds=3
+)
+
+code = orchestrator.generate_code(config)
+</code></pre>
+<p><strong>Use Cases:</strong>
+- Complex decision making
+- Risk assessment
+- Strategy evaluation</p>
+<p><strong>How It Works:</strong>
+1. Each agent presents their perspective
+2. Agents critique and respond to each other
+3. Moderator synthesizes final consensus
+4. Process repeats for specified rounds</p>
+<hr />
+<h3 id="voting-pattern">Voting Pattern</h3>
+<p>Agents independently solve a problem, then vote on the best solution.</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+config = orchestrator.create_pattern_config(
+    pattern_type=PatternType.VOTING,
+    agents=[&quot;analyst_1&quot;, &quot;analyst_2&quot;, &quot;analyst_3&quot;],
+    task_description=&quot;Determine the best investment strategy&quot;,
+    voting_method=&quot;majority&quot;  # or &quot;weighted&quot;, &quot;ranked&quot;
+)
+
+code = orchestrator.generate_code(config)
+</code></pre>
+<p><strong>Use Cases:</strong>
+- Democratic decision making
+- Reducing individual bias
+- Ensemble approaches</p>
+<p><strong>Voting Methods:</strong>
+- <code>majority</code> - Simple majority wins
+- <code>weighted</code> - Votes weighted by agent expertise
+- <code>ranked</code> - Ranked choice voting</p>
+<hr />
+<h3 id="pipeline-pattern">Pipeline Pattern</h3>
+<p>Agents process work sequentially, each adding their expertise.</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+config = orchestrator.create_pattern_config(
+    pattern_type=PatternType.PIPELINE,
+    agents=[&quot;data_collector&quot;, &quot;analyzer&quot;, &quot;report_writer&quot;, &quot;reviewer&quot;],
+    task_description=&quot;Generate a quarterly business report&quot;
+)
+
+code = orchestrator.generate_code(config)
+</code></pre>
+<p><strong>Use Cases:</strong>
+- Content creation workflows
+- Data processing pipelines
+- Document review processes</p>
+<p><strong>How It Works:</strong>
+1. First agent processes input
+2. Output passes to next agent
+3. Each agent transforms and enriches
+4. Final agent produces output</p>
+<hr />
+<h3 id="mapreduce-pattern">MapReduce Pattern</h3>
+<p>Split work across multiple agents, process in parallel, then aggregate.</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator, PatternType
+
+orchestrator = Orchestrator()
+
+config = orchestrator.create_pattern_config(
+    pattern_type=PatternType.MAP_REDUCE,
+    agents=[&quot;mapper_1&quot;, &quot;mapper_2&quot;, &quot;mapper_3&quot;, &quot;reducer&quot;],
+    task_description=&quot;Analyze customer feedback from multiple sources&quot;,
+    chunk_strategy=&quot;by_source&quot;  # or &quot;by_size&quot;, &quot;by_topic&quot;
+)
+
+code = orchestrator.generate_code(config)
+</code></pre>
+<p><strong>Use Cases:</strong>
+- Large-scale data analysis
+- Parallel document processing
+- Distributed research tasks</p>
+<p><strong>How It Works:</strong>
+1. Input is split into chunks
+2. Mapper agents process chunks in parallel
+3. Reducer agent aggregates all results
+4. Final output is synthesized</p>
+<hr />
+<h2 id="natural-language-generation">Natural Language Generation</h2>
+<p>Describe your orchestration needs in plain English:</p>
+<pre><code class="language-python">from multi_agent_generator.orchestration import Orchestrator
+
+orchestrator = Orchestrator()
+
+# The system automatically selects the best pattern
+result = orchestrator.generate_from_description(
+    &quot;Build a content team with a supervisor managing writers and editors&quot;
+)
+
+print(result[&quot;pattern&quot;])  # SUPERVISOR
+print(result[&quot;agents&quot;])   # [&quot;supervisor&quot;, &quot;writer&quot;, &quot;editor&quot;]
+print(result[&quot;code&quot;])     # Generated code
+</code></pre>
+<hr />
+<h2 id="api-reference">API Reference</h2>
+<h3 id="orchestrator">Orchestrator</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>generate_from_description(description)</code></td>
+<td>Generate orchestration from natural language</td>
+</tr>
+<tr>
+<td><code>create_pattern_config(pattern_type, agents, ...)</code></td>
+<td>Create configuration for a pattern</td>
+</tr>
+<tr>
+<td><code>generate_code(config)</code></td>
+<td>Generate executable code from config</td>
+</tr>
+<tr>
+<td><code>list_patterns()</code></td>
+<td>List all available patterns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="patterntype">PatternType</h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SUPERVISOR</code></td>
+<td>Central coordinator pattern</td>
+</tr>
+<tr>
+<td><code>DEBATE</code></td>
+<td>Discussion and consensus pattern</td>
+</tr>
+<tr>
+<td><code>VOTING</code></td>
+<td>Democratic voting pattern</td>
+</tr>
+<tr>
+<td><code>PIPELINE</code></td>
+<td>Sequential processing pattern</td>
+</tr>
+<tr>
+<td><code>MAP_REDUCE</code></td>
+<td>Parallel processing pattern</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pattern-classes">Pattern Classes</h3>
+<p>Each pattern has a dedicated class with specific configuration options:</p>
+<ul>
+<li><code>SupervisorPattern</code> - Configure supervisor behavior and delegation rules</li>
+<li><code>DebatePattern</code> - Set debate rounds and moderation style</li>
+<li><code>VotingPattern</code> - Choose voting method and tie-breakers</li>
+<li><code>PipelinePattern</code> - Define stage transitions and error handling</li>
+<li><code>MapReducePattern</code> - Configure chunking and aggregation strategies</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
